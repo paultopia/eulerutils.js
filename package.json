@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/paultopia/eulerutils.js#readme",
   "dependencies": {
+    "lodash.range": "^3.2.0",
     "ramda": "^0.24.1"
+  },
+  "devDependencies": {
+    "tape": "^4.6.3"
   }
 }

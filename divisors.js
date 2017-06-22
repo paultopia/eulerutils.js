@@ -1,8 +1,8 @@
-const R = require('ramda');
+const range = require('lodash.range');
 function findDivisors(num){
     var maxnum = Math.round(Math.sqrt(num));
     var divisors = [];
-    var candidates = R.range(1, maxnum + 1);
+    var candidates = range(1, maxnum + 1);
     return function innerFinder(n, dvs, cands){
         if (cands.length === 0) {
             return {"divisors": dvs, "number": n};
@@ -24,5 +24,30 @@ function findProperDivisors(num){
     return {"properDivisors": [...divs].sort((x, y)=> x - y), "number": num};
 }
 
-console.log(findDivisors(28));
-console.log(findProperDivisors(28));
+function makeCandidateFactors(num){
+    var cf = range(3, num);
+    cf.unshift(2);
+    return cf;
+}
+
+function findPrimeFactors(num){
+    var candidateFactors = makeCandidateFactors(num);
+    return function innerPrimeFactors(n, candidates, factors){
+        if (candidates.length === 0) {
+            factors.push(n);
+            return factors;
+        }
+        var test = candidates.shift();
+        var possibleNext = n / test;
+        if (Number.isInteger(possibleNext)) {
+            factors.push(test);
+            return innerPrimeFactors(possibleNext, makeCandidateFactors(possibleNext), factors);
+        }
+        else {
+            return innerPrimeFactors(n, candidates, factors)
+        }
+
+    }(num, candidateFactors, []);
+}
+
+console.log(findPrimeFactors(450));
