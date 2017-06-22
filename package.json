@@ -1,0 +1,22 @@
+{
+  "name": "eulerutils",
+  "version": "1.0.0",
+  "description": "quickie utilities to do repetitive math for euler problems",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paultopia/eulerutils.js.git"
+  },
+  "author": "Paul Gowder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paultopia/eulerutils.js/issues"
+  },
+  "homepage": "https://github.com/paultopia/eulerutils.js#readme",
+  "dependencies": {
+    "ramda": "^0.24.1"
+  }
+}
