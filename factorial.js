@@ -12,10 +12,13 @@ const innerFact = R.memoize(function(num, acc){
 });
 
 function factorial(num) {
+    count = 0;
     return innerFact(num, 1);
 }
 
-console.log("factorial 5 is: ", factorial(5));
+console.log("factorial 8 is: ", factorial(8));
+console.log("factorial 9 is: ", factorial(9));
 console.log("factorial 3 is: ", factorial(3));
-console.log("factorial 5 is: ", factorial(5));
-console.log("factorial 10 is: ", factorial(10));
+console.log("factorial 4 is: ", factorial(4));
+
+module.exports = {factorial};
