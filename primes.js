@@ -1,4 +1,4 @@
-use strict;
+"use strict;"
 function innerIsPrime(test, primesarray){
     for (x of primesarray){
         if (x > Math.sqrt(test)) {

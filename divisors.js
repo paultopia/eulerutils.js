@@ -1,3 +1,7 @@
+"use strict";
+
+// NOTE: currently errors on 0 input for some of these.  Which I'm cool with, since this stuff shouldn't be defined for zero anyway.  But maybe should give a helpful error message?  Right now it just blows the stack.
+
 const range = require('lodash.range');
 function findDivisors(num){
     var maxnum = Math.round(Math.sqrt(num));
@@ -5,7 +9,7 @@ function findDivisors(num){
     var candidates = range(1, maxnum + 1);
     return function innerFinder(n, dvs, cands){
         if (cands.length === 0) {
-            return {"divisors": dvs, "number": n};
+            return {"divisors": dvs.sort((x, y)=> x - y), "number": n};
         } else if (n % cands[0] === 0) {
             var newdvs = dvs.concat([cands[0], n/cands[0]])
             cands.shift();
@@ -14,7 +18,7 @@ function findDivisors(num){
             cands.shift();
             return innerFinder(n, dvs, cands)
         }
-    }(num, divisors.sort((x, y)=> x - y), candidates);
+    }(num, divisors, candidates);
 }
 
 
@@ -46,8 +50,9 @@ function findPrimeFactors(num){
         else {
             return innerPrimeFactors(n, candidates, factors)
         }
-
     }(num, candidateFactors, []);
 }
 
-console.log(findPrimeFactors(450));
+// API is not consistent between find prime factors (returns array) and the others (return labelled map)
+
+module.exports = {findPrimeFactors, findDivisors, findProperDivisors};
