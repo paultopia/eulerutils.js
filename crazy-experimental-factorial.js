@@ -1,11 +1,13 @@
 // experimental hand-rolled memoization to keep inner values
 
 "use strict";
+var count = 0
 var cache = new Map();
 cache.set(0,0);
 cache.set(1,1);
 
 const innerFact = function(num, orignum, acc){
+    count += 1;
     if (cache.get(num)) {
         console.log("done in: ", count, " steps. ")
         var result = cache.get(num) * acc;
