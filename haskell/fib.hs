@@ -1,5 +1,5 @@
 module Fib where
-import Yankiepoo
+import Listmaker
 
 innerfib :: Int -> Int -> Int -> Maybe Int
 innerfib 0 a b = Just a
@@ -11,7 +11,4 @@ fib :: Int -> Maybe Int
 fib x = innerfib x 0 1
 
 fiblist :: Int -> [Int]
-fiblist x =
-  let maybelist = map fib [0..]
-      intlist = map yankiepoo maybelist
-  in take (x + 1) intlist
+fiblist = listmaker fib

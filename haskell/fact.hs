@@ -1,5 +1,5 @@
 module Fact where
-import Yankiepoo
+import Listmaker
 
 innerfact :: Int -> Int -> Maybe Int
 innerfact 0 acc = Just 0
@@ -11,7 +11,4 @@ fact :: Int -> Maybe Int
 fact x = innerfact x 1
 
 factlist :: Int -> [Int]
-factlist x =
-  let maybelist = map fact [0..]
-      intlist = map yankiepoo maybelist
-  in take (x + 1) intlist
+factlist = listmaker fact
