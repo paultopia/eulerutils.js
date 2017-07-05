@@ -1,6 +1,5 @@
-yankiepoo :: Maybe Int -> Int
-yankiepoo Nothing = 0
-yankiepoo (Just x) = x
+module Fib where
+import Yankiepoo
 
 innerfib :: Int -> Int -> Int -> Maybe Int
 innerfib 0 a b = Just a
