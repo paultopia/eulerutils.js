@@ -2,19 +2,17 @@ yankiepoo :: Maybe Int -> Int
 yankiepoo Nothing = 0
 yankiepoo (Just x) = x
 
-fib :: Int -> Maybe Int
-fib 0 = Just 0
-fib 1 = Just 1
-fib x | x < 0 = Nothing
-fib x = Just (yankiepoo (fib (x - 1)) + yankiepoo (fib (x - 2)))
+innerfib :: Int -> Int -> Int -> Maybe Int
+innerfib 0 a b = Just a
+innerfib 1 a b = Just b
+innerfib x _ _ | x < 0 = Nothing
+innerfib x a b = innerfib (x - 1) b (a + b)
 
--- this isn't tail recursive... is that a problem?
+fib :: Int -> Maybe Int
+fib x = innerfib x 0 1
 
 fiblist :: Int -> [Int]
 fiblist x =
   let maybelist = map fib [0..]
       intlist = map yankiepoo maybelist
-  in take x intlist
-
-
--- fiblist (-2) -> [] --- which is fine, but I don't understand why it gets there. what does range operator do when x is out of range?
+  in take (x + 1) intlist
